@@ -1,19 +1,197 @@
-import AnimatedCard from "./AnimatedCard"
+import  { useState } from 'react';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
+import img1 from '../images/s1.webp';
+import img2 from '../images/s2.webp';
+import img3 from '../images/s3.webp';
+import img4 from '../images/s4.webp';
+import img5 from '../images/s5.webp';
+import img6 from '../images/s4.webp';
 
 const Services = () => {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  
+  const next = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === features.length - 3 ? 0 : prevIndex + 1
+    );
+  };
+
+  const prev = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? features.length - 3 : prevIndex - 1
+    );
+  };
+
+  const getCardStyle = (index) => {
+    const diff = (index - currentIndex + features.length) % features.length;
+    let transform = '';
+    let zIndex = 0;
+    let opacity = 1;
+
+    if (diff === 0) { // Current card
+      transform = 'translateX(-50%) scale(1) translateZ(0)';
+      zIndex = 3;
+    } else if (diff === 1 || diff === features.length - 1) { // Adjacent cards
+      const direction = diff === 1 ? 1 : -1;
+      transform = `translateX(${direction * 75 - 50}%) scale(0.85) translateZ(-100px)`;
+      zIndex = 2;
+      opacity = 0.7;
+    } else { // Other cards
+      const direction = diff <= features.length / 2 ? 1 : -1;
+      transform = `translateX(${direction * 100 - 50}%) scale(0.7) translateZ(-200px)`;
+      zIndex = 1;
+      opacity = 0.5;
+    }
+
+    return {
+      transform,
+      zIndex,
+      opacity,
+      transition: 'all 0.5s ease-in-out'
+    };
+  };
+
+  const features = [
+    {
+      id: 1,
+      title: "Daily Market Views",
+      description: "Stay updated with the latest market trends and insights every day. Our team provides in-depth analyses and reports on global market movements, economic indicators, and emerging opportunities. These comprehensive, easy-to-understand reports are tailored to your trading needs, helping you make well-informed decisions consistently.",
+      icon: img1
+    },
+    {
+      id: 2,
+      title: "Well-Researched Ideas",
+      description: "Benefit from expert opinions backed by rigorous research and detailed analysis. Each recommendation is based on reliable data, industry trends, and market conditions. With our well-researched ideas, you can make decisions with greater confidence and enhance your investment strategies.",
+      icon: img2
+    },
+    {
+      id: 3,
+      title: "Credits-Based Subscription Model",
+      description: "Enjoy a cost-effective approach to accessing premium research. Our flexible credits-based subscription system allows you to pay only for successful calls and the services you use. This model ensures you get the maximum value for your investment while maintaining financial control.",
+      icon: img3
+    },
+    {
+      id: 4,
+      title: "Timely Customer Support",
+      description: "Our dedicated support team is always available to address your queries and concerns. Whether you need help with trading strategies, technical issues, or account-related inquiries, we ensure prompt and reliable assistance for a smooth trading experience.",
+      icon: img4
+    },
+    {
+      id: 5,
+      title: "Initial Hand-Holding For Beginners",
+      description: "Starting your trading journey can be daunting, but we’ve got you covered. Our personalized guidance program helps beginners gain confidence and clarity in navigating the trading world. Learn the basics, understand market dynamics, and start trading with our expert support.",
+      icon: img5
+    },
+    {
+      id: 6,
+      title: "Insights Aligned with Your Goals",
+      description: "Achieve your investment objectives with research and recommendations tailored to your specific goals. We analyze your risk appetite, investment horizon, and financial targets to provide actionable insights that align perfectly with your needs.",
+      icon: img1
+    },
+    {
+      id: 7,
+      title: "Risk Assessment Tools",
+      description: "Manage trading risks effectively with our advanced tools. Get actionable insights into potential risks, evaluate market volatility, and implement strategies to safeguard your investments. Stay ahead with comprehensive data and intuitive risk management features.",
+      icon: img6
+    },
+    {
+      id: 8,
+      title: "Advanced Charting Tools",
+      description: "Visualize market trends like never before with our state-of-the-art charting tools. Customize charts, identify patterns, and analyze data with precision. Whether you’re a seasoned trader or a beginner, our tools provide a competitive edge in your market analysis.",
+      icon: img2
+    },
+    {
+      id: 9,
+      title: "Portfolio Performance Tracking",
+      description: "Monitor and evaluate your portfolio’s performance with ease. Our detailed analytics and insights help you understand the impact of your investment decisions. Stay informed about returns, identify areas for improvement, and optimize your strategies for better outcomes.",
+      icon: img3
+    },
+    {
+      id: 10,
+      title: "Community Discussions",
+      description: "Join a dynamic community of traders and investors to share ideas, discuss strategies, and stay updated on market trends. Engage in meaningful conversations, learn from others’ experiences, and build valuable connections in the trading world.",
+      icon: img4
+    }
+  ];
+  
+  
+
   return (
-    <div>
-         <p className="h-10 pt-10 text-center text-3xl  text-blue-400 font-semibold">
-            O U R  <span className=" ml-2">  S E R V I C E S</span> 
-        </p>
-        <p className="pt-10 text-3xl font-semibold text-center"> 
-            Services We offer
-        </p>
-        <p className=" pt-4 px-32 pb-2 text-lg text-center">
-              Transform your trading journey with our premier stock market advisory services. Our team of seasoned analysts, armed with cutting-edge research tools, crafts tailored strategies to match your risk tolerance and financial goals. Whether you're a pro or just starting out, we'll help you stay ahead in the dynamic world of trading with actionable insights and personalized recommendations that drive real success.
-        </p>
-        <AnimatedCard />
+    <section className="lg:py-6 py-6 w-full">
+    <div className=" px-4 ">
+      <div className="border border-blue-500 bg-[#F9FBFF]  md:rounded-[20px] rounded-[12px] md:pt-8 md:pb-10 p-5">
+        <div className="md:px-10 px-2">
+          <h1 className="text-blue-600 font-extrabold  xl:text-[3.438rem] xl:leading-[3.781rem] md:text-[2.5rem] text-[30px] md:leading-[2.5rem] leading-[33px] md:max-w-[700px] max-w-[232px]">
+            SERVICES WE PROVIDE
+          </h1>
+          <p className="md:mt-8 mt-2 text-[14px] md:text-[20px] leading-[20.8px] md:leading-[28px] text-H2Color md:max-w-[427px] max-w-[220px]">
+            Trading and Investment Insights Based on Market Conditions Suitable For Everyone.
+          </p>
+          <a 
+            href="/FreeTrial"
+            target="_blank" 
+            className="inline-block text-[#FBFBFB] font-semibold md:rounded-[8px] rounded-[4px] bg-primary px-5 py-3 md:text-[17px] text-[12px] text-center mt-8"
+          >
+            Get 3 Free Research Calls
+          </a>
+        </div>
+
+        <div className="relative mx-auto px-4 md:px-0 h-[500px]">
+      <div className="h-[400px] relative perspective-1000 overflow-hidden">
+        <div className="relative h-full w-full flex transition-transform ease-in-out duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
+          {features.map((feature, index) => (
+            <div
+              key={feature.id}
+              className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4" // Adjust width for responsiveness
+            >
+              <div 
+                className="cursor-pointer bg-white rounded-lg shadow-lg p-6 h-full"
+                onClick={() => setCurrentIndex(index)}
+              >
+                <div className="mb-4">
+                  <img
+                    src={feature.icon}
+                    alt={feature.title}
+                    className="w-12 h-12 mb-2 mx-auto"
+                  />
+                </div>
+                <h3 className="text-xl font-semibold mb-2 text-center">{feature.title}</h3>
+                <p className="text-gray-600 text-center">{feature.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <button
+        onClick={prev}
+        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+
+      <button
+        onClick={next}
+        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+
+      <div className="flex justify-center mt-4 gap-2">
+        {features.map((_, i) => (
+          <button
+            key={i}
+            className={`h-2 w-2 rounded-full ${
+              i === currentIndex ? 'bg-blue-600' : 'bg-gray-300'
+            }`}
+            onClick={() => setCurrentIndex(i)}
+          />
+        ))}
+      </div>
     </div>
+      </div>
+    </div>
+     </section>
   )
 }
 
