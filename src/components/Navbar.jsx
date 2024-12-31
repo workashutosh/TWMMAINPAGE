@@ -27,7 +27,7 @@ const Navbar = () => {
   return (
     <nav className="bg-opacity-60 backdrop-blur-md z-50">
     {/* Rolling Text Component */}
-      <div className="bg-blue-400 overflow-hidden" style={{ height: '25px' }}>
+      <div className="bg-blue-700 overflow-hidden" style={{ height: '25px' }}>
         <div className="animate-marquee whitespace-nowrap text-white font-semibold px-2 text-sm ">
           Registration granted by SEBI and certification from NISM in no way guarantee performance of the intermediary  or provide any assurance of returns to investors. Investment in securities are subject to market risks. Read all related documents carefully before investing.
         </div>

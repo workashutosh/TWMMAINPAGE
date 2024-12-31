@@ -1,4 +1,4 @@
-import headerImage from '../images/header.webp';
+import headerImage from '../images/header2.webp';
 import BookingForm from './Bookingform';
 
 const Header = () => {
@@ -13,13 +13,13 @@ const Header = () => {
     }}
   >
     {/* Overlay for the image */}
-    <div className="absolute inset-0 bg-black bg-opacity-50 pointer-events-none"></div>
+    <div className="absolute inset-0 bg-black bg-opacity-20 pointer-events-none"></div>
   
     {/* Content container */}
     <div className="relative z-10 container mx-auto px-4">
       <div className="flex flex-col sm:flex-row items-center justify-center gap-8">
-        <div className="bg-opacity-60 p-8 max-w-[550px] text-center sm:text-left">
-        <h1 className="text-2xl md:text-4xl font-extrabold uppercase  tracking-wide bg-gradient-to-r from-blue-400 via-blue-500 to-blue-700 bg-clip-text text-transparent drop-shadow-md">
+        <div className="bg-opacity-60 p-8 max-w-[750px] text-center sm:text-left">
+        <h1 className="text-2xl md:text-4xl font-extrabold uppercase  tracking-wide text-white drop-shadow-md">
           Your Investments, Our Strategies!
         </h1>
 
