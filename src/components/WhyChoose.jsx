@@ -32,13 +32,13 @@ const WhyChoose = () => {
   ];
 
   return (
-    <div className="grid lg:grid-cols-4 grid-cols-1 px-12 select-none justify-between md:gap-7 gap-4 md:mt-24 mt-12 xl:pe-14">
+    <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 px-6 sm:px-8 md:px-12 select-none justify-between gap-4 sm:gap-6 md:gap-7 mt-12 sm:mt-16 md:mt-24">
       {stats.map((stat) => (
         <div
           key={stat.id}
-          className="md:block flex items-center gap-2 bg-white shadow-md md:rounded-[15px] rounded-[6px] md:p-5 py-4 px-2"
+          className="flex sm:flex-col items-center gap-4 sm:gap-2 bg-white shadow-md rounded-lg sm:rounded-xl p-4 sm:p-5"
         >
-          <div className="md:w-[41px] md:h-[41px] w-[24px] h-[24px]">
+          <div className="w-[32px] h-[32px] sm:w-[41px] sm:h-[41px] flex-shrink-0">
             <img
               alt="Image not found"
               fetchPriority="high"
@@ -46,14 +46,14 @@ const WhyChoose = () => {
               height="40"
               decoding="async"
               src={stat.imgSrc}
-              style={{ color: 'transparent', objectFit: 'cover' }}
+              className="w-full h-full object-cover"
             />
           </div>
           <div>
-            <h2 className="xl:text-[40px] xl:leading-[44px] md:text-[2.5rem] md:leading-[2.5rem] font-bold text-[18px] leading-[22px] text-blue-600 text-primary md:mt-5">
+            <h2 className="text-lg sm:text-xl md:text-2xl xl:text-[40px] font-bold text-blue-600 text-primary">
               {stat.title}
             </h2>
-            <p className="md:text-[16px] text-[9px] text-[#231F20] md:mt-3 mt-1">
+            <p className="text-xs sm:text-sm md:text-base text-gray-800 mt-1 sm:mt-2">
               {stat.description}
             </p>
           </div>

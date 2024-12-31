@@ -22,34 +22,7 @@ const Services = () => {
     );
   };
 
-  const getCardStyle = (index) => {
-    const diff = (index - currentIndex + features.length) % features.length;
-    let transform = '';
-    let zIndex = 0;
-    let opacity = 1;
 
-    if (diff === 0) { // Current card
-      transform = 'translateX(-50%) scale(1) translateZ(0)';
-      zIndex = 3;
-    } else if (diff === 1 || diff === features.length - 1) { // Adjacent cards
-      const direction = diff === 1 ? 1 : -1;
-      transform = `translateX(${direction * 75 - 50}%) scale(0.85) translateZ(-100px)`;
-      zIndex = 2;
-      opacity = 0.7;
-    } else { // Other cards
-      const direction = diff <= features.length / 2 ? 1 : -1;
-      transform = `translateX(${direction * 100 - 50}%) scale(0.7) translateZ(-200px)`;
-      zIndex = 1;
-      opacity = 0.5;
-    }
-
-    return {
-      transform,
-      zIndex,
-      opacity,
-      transition: 'all 0.5s ease-in-out'
-    };
-  };
 
   const features = [
     {
