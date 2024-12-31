@@ -12,7 +12,7 @@ const Header = () => {
       const timeout = setTimeout(() => {
         setText(prev => prev + fullText[index]);
         setIndex(index + 1);
-      }, 200);
+      }, 90);
 
       return () => clearTimeout(timeout);
     }
