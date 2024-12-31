@@ -157,27 +157,26 @@ const BookingForm = () => {
     if (Object.keys(validationErrors).length > 0) {
       setErrors(validationErrors);
     } else {
-      console.log('Form submitted:', formData);
+      //console.log('Form submitted:', formData);
   
-      // Sending formData to the specified URL using POST method
       fetch('https://twmresearchalert.com/subdomain/gateway/registrationget.php', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(formData), // Convert formData to JSON
+        body: JSON.stringify(formData),
       })
-        .then(response => response.json()) // Assuming the response is JSON
-        .then(data => {
-          console.log('Success:', data);
-          // Redirect after successful submission
-          window.location.href = 'https://twmresearchalert.com/landingpage/thank-you/';
+        .then(response => {
+          if (response.status === 200) {
+            window.location.replace('https://twmresearchalert.com/landingpage/thank-you/');
+          }
+          return response.json();
         })
         .catch(error => {
           console.error('Error:', error);
         });
     }
-  };
+};
   
   
 
