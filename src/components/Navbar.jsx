@@ -25,7 +25,7 @@ const Navbar = () => {
   const toggleMore = () => setIsMoreOpen(!isMoreOpen);
 
   return (
-    <nav className="bg-opacity-30 backdrop-blur-md z-50">
+    <nav className="bg-opacity-60 backdrop-blur-md z-50">
     {/* Rolling Text Component */}
       <div className="bg-blue-400 overflow-hidden" style={{ height: '25px' }}>
         <div className="animate-marquee whitespace-nowrap text-white font-semibold px-2 text-sm ">
