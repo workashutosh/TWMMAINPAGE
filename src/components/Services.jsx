@@ -93,20 +93,13 @@ const Services = () => {
     <section className="lg:py-6 py-6 w-full">
     <div className=" px-4 ">
       <div className="border border-blue-500 bg-[#F9FBFF]  md:rounded-[20px] rounded-[12px] md:pt-8 md:pb-10 p-5">
-        <div className="md:px-10 px-2">
-          <h1 className="text-blue-600 font-extrabold  xl:text-[3.438rem] xl:leading-[3.781rem] md:text-[2.5rem] text-[30px] md:leading-[2.5rem] leading-[33px] md:max-w-[700px] max-w-[232px]">
+        <div className="md:px-10 px-2 items-center mb-5 flex justify-center flex-col text-center ">
+          <h1 className="text-blue-600 font-extrabold text-center  xl:text-[3.438rem] xl:leading-[3.781rem] md:text-[2.5rem] text-[30px] md:leading-[2.5rem] leading-[33px] md:max-w-[700px] max-w-[232px]">
             SERVICES WE PROVIDE
           </h1>
-          <p className="md:mt-8 mt-2 text-[14px] md:text-[20px] leading-[20.8px] md:leading-[28px] text-H2Color md:max-w-[427px] max-w-[220px]">
+          <p className="md:mt-3 mt-1 text-[14px] md:text-[20px] leading-[20.8px] md:leading-[28px] text-H2Color md:max-w-[427px] max-w-[220px]">
             Trading and Investment Insights Based on Market Conditions Suitable For Everyone.
           </p>
-          <a 
-            href="/FreeTrial"
-            target="_blank" 
-            className="inline-block text-[#FBFBFB] font-semibold md:rounded-[8px] rounded-[4px] bg-primary px-5 py-3 md:text-[17px] text-[12px] text-center mt-8"
-          >
-            Get 3 Free Research Calls
-          </a>
         </div>
 
         <div className="relative mx-auto px-4 md:px-0 h-[500px]">
