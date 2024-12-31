@@ -2,7 +2,7 @@ import about from '../images/mobile.webp';
 
 const AboutUs = () => {
   return (
-    <section className="bg-white py-10 px-4 md:px-12 lg:px-24 about">
+    <section className="bg-white py-10 px-4 md:px-12 lg:px-24 about select-none">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-44 items-center">
         {/* Image Section */}
         <div className="flex justify-center  md:justify-end">

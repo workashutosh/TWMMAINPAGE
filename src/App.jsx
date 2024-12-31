@@ -1,7 +1,7 @@
 import Navbar from "./components/Navbar"
 import Header from "./components/Header"
 import AboutUs from "./components/AboutUs"
-import Accordion from "./components/Accordion"
+import WhyChoose from "./components/WhyChoose"
 import Services from "./components/Services"
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
       <div className="pt-16"> {/* Adjust pt-16 based on your navbar height */}
         <Header />
         <AboutUs />
-        <Accordion />
+        <WhyChoose />
         <Services />
       </div>
     </div>
