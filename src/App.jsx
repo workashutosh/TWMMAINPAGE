@@ -9,6 +9,7 @@ import FAQ from './components/Faq';
 import UserConsent from './components/Userconsent'
 import PDFViewer  from './components/PdfViewer'
 import RefundPolicy from './components/RefundPolicy';
+import Packages from './components/Packages';
 {/* <PDFViewer url="https://twmresearchalert.com/documents/Terms.pdf" /> */}
 
 
@@ -56,6 +57,17 @@ const App = () => {
               element={
                 <>
                   <Services />
+                  <Footer />
+                </>
+              } 
+            />
+
+            {/* Packages route */}
+            <Route 
+              path="/packages" 
+              element={
+                <>
+                  <Packages />
                   <Footer />
                 </>
               } 
