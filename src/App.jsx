@@ -6,6 +6,11 @@ import WhyChoose from "./components/WhyChoose"
 import Services from "./components/Services"
 import Footer from "./components/Footer"
 import FAQ from './components/Faq';
+import UserConsent from './components/Userconsent'
+import PDFViewer  from './components/PdfViewer'
+import RefundPolicy from './components/RefundPolicy';
+{/* <PDFViewer url="https://twmresearchalert.com/documents/Terms.pdf" /> */}
+
 
 const App = () => {
   return (
@@ -51,6 +56,83 @@ const App = () => {
               element={
                 <>
                   <Services />
+                  <Footer />
+                </>
+              } 
+            />
+
+            {/* User consent route */}
+            <Route 
+              path="/userconsent" 
+              element={
+                <>
+                  <UserConsent />
+                  <Footer />
+                </>
+              } 
+            />
+
+            {/* Privacy policy */}
+            <Route 
+              path="/privacy" 
+              element={
+                <>
+                  <PDFViewer url="https://twmresearchalert.com/documents/Terms.pdf" />
+                  <Footer />
+                </>
+              } 
+            />
+
+            {/* Refund policy */}
+            <Route 
+              path="/refund" 
+              element={
+                <>
+                  <RefundPolicy />
+                  <Footer />
+                </>
+              } 
+            />
+
+            {/* Terms and condition */}
+            <Route 
+              path="/tnc" 
+              element={
+                <>
+                  <PDFViewer url="https://twmresearchalert.com/documents/Terms.pdf" />
+                  <Footer />
+                </>
+              } 
+            />
+
+            {/* Legal Disclaimer */}
+            <Route 
+              path="/disclaimer" 
+              element={
+                <>
+                  <PDFViewer url="https://twmresearchalert.com/documents/Legaldisclaimer.pdf" />
+                  <Footer />
+                </>
+              } 
+            />
+
+             {/* charter */}
+             <Route 
+              path="/charter" 
+              element={
+                <>
+                  <PDFViewer url="https://twmresearchalert.com/documents/InvestorCharter.pdf" />
+                  <Footer />
+                </>
+              } 
+            />
+
+            {/* Advertisement Disclaimer */}
+            <Route 
+              path="/addisclaimer" 
+              element={
+                <>
+                  <PDFViewer url="https://twmresearchalert.com/documents/AdvertisementDisclaimer.pdf" />
                   <Footer />
                 </>
               } 

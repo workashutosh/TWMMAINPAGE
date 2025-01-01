@@ -90,7 +90,7 @@ const Services = () => {
   
 
   return (
-    <section className="lg:py-6 py-6 w-full">
+    <section className="lg:py-12 py-12 w-full">
     <div className=" px-4 ">
       <div className="border border-blue-500 bg-[#F9FBFF]  md:rounded-[20px] rounded-[12px] md:pt-8 md:pb-10 p-5">
         <div className="md:px-10 px-2 items-center mb-5 flex justify-center flex-col text-center ">

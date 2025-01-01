@@ -60,34 +60,9 @@ const Navbar = () => {
             </a>
 
             {/* Services Dropdown */}
-            <div className="relative dropdown">
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleServices();
-                }}
-                className="flex items-center text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300"
-              >
-                Packages
-                <svg
-                  className="ml-1 h-5 w-5"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                </svg>
-              </button>
-              {isServicesOpen && (
-                <div className="absolute z-[100] left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2">
-                  <a href="/services/index-basic" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Index Option Basic</a>
-                  <a href="/services/index-premium" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Index Option Premium</a>
-                  <a href="/services/index-standard" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Index Option Standard</a>
-                  <a href="/services/equity-cash" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Equity Cash Intraday Premium</a>
-                </div>
-              )}
-            </div>
+            <a href="/packages" className="text-gray-700 hover:text-blue-600 px-3 py-2 rounded-md text-sm font-medium transition-colors duration-300">
+              Packages
+            </a>
 
             {/* More Dropdown */}
             <div className="relative dropdown">
@@ -111,11 +86,8 @@ const Navbar = () => {
               </button>
               {isMoreOpen && (
                 <div className="absolute z-[100] left-0 mt-2 w-48 bg-white shadow-lg rounded-md py-2">
-                  <a href="/more/complaint" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Complaint Board</a>
-                  <a href="/more/performance" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Past Performance</a>
-                  <a href="/more/charter" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Investor Charter</a>
-                  <a href="/more/disclosure" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Disclosure</a>
-                  <a href="/more/privacy" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Privacy Policy</a>
+                  <a href="/complaint" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Complaint Board</a>
+                  <a href="/charter" className="block px-4 py-2 text-gray-700 hover:bg-gray-100">Investor Charter</a>
                 </div>
               )}
             </div>

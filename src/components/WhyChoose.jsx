@@ -32,7 +32,7 @@ const WhyChoose = () => {
   ];
 
   return (
-    <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 px-6 sm:px-8 md:px-12 select-none justify-between gap-4 sm:gap-6 md:gap-7 mt-12 sm:mt-16 md:mt-24">
+    <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 px-6 py-14 sm:px-8 md:px-12 select-none justify-between gap-4 sm:gap-6 md:gap-7 mt-12 sm:mt-16 md:mt-24">
       {stats.map((stat) => (
         <div
           key={stat.id}

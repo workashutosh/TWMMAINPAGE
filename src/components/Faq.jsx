@@ -36,7 +36,7 @@ const FAQ = () => {
   };
 
   return (
-    <div className="max-w-3xl mx-auto w-full bg-white rounded-lg shadow-sm">
+    <div className="max-w-3xl mx-auto w-full py-12 bg-white rounded-lg shadow-sm">
       <div className="p-6 sm:p-8">
         <h2 className="text-2xl font-bold text-gray-900 mb-8">
           Frequently Asked Questions
