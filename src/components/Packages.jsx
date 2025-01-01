@@ -320,7 +320,7 @@ const Packages = () => {
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Header */}
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold mb-4">Investment Packages</h2>
+        <h2 className="text-3xl font-bold mb-4 uppercase"><span className='text-purple-600 '>Investment</span> Packages</h2>
         <p className="text-gray-600">Choose from our wide range of investment advisory services</p>
       </div>
 

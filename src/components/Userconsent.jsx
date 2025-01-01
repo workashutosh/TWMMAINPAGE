@@ -2,7 +2,6 @@
 const UserConsent = () => {
   return (
     <div className="bg-gray-100 px-8 py-8 rounded-md shadow-sm">
-      <h3 className="text-lg font-bold text-gray-900">User Consent</h3>
       <p className="text-base text-gray-700">
         By visiting/Using/accessing our website (https://twmresearchalert.com/) and/or our official mobile application and by making payment for a subscription of any of our research services, you are agreeing to be bound by the following terms and conditions and all other terms and conditions, Legal Disclaimer, Disclosures, Policies and User Consent of TWM Research Alert firm mentioned on our official website (https://twmresearchalert.com/).
       </p>

@@ -35,7 +35,7 @@ const Footer = () => {
             <p>Maruti Nandan Apartment, Flat No 5, Wasan Nagar,</p>
             <p>Near Panini Society, Pathardi Phata, NASHIK,</p>
             <p>MAHARASHTRA, 422009</p>
-            <p className="text-white">9769960695</p>
+            <p className="">9769960695</p>
           </div>
         </div>
 
