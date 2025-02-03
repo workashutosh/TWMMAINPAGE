@@ -20,6 +20,7 @@
     "react-select": "^5.9.0",
     "react-slick": "^0.30.3",
     "slick-carousel": "^1.8.1",
+    "styled-components": "^6.1.14",
     "tailwindcss-text-stroke": "^0.0.5"
   },
   "devDependencies": {

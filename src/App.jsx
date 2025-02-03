@@ -10,6 +10,8 @@ import UserConsent from './components/Userconsent'
 import PDFViewer  from './components/PdfViewer'
 import RefundPolicy from './components/RefundPolicy';
 import Packages from './components/Packages';
+import CustomerJourneyTimeline from './components/Timeline'; 
+import ContactUs from './components/ContactUs';
 
 
 const App = () => {
@@ -31,8 +33,10 @@ const App = () => {
                 <>
                   <Header />
                   <AboutUs />
+                  <CustomerJourneyTimeline />
                   <WhyChoose />
                   <Services />
+                  <ContactUs />
                   <FAQ />
                   <Footer />
                 </>

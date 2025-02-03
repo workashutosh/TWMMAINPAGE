@@ -8,13 +8,13 @@ const WhyChoose = () => {
     {
       id: 1,
       imgSrc: img1,
-      title: '150 Cr +',
+      title: '100 Cr +',
       description: 'Illustrative Results',
     },
     {
       id: 2,
       imgSrc: img2,
-      title: '20+ Years',
+      title: '14+ Years',
       description: 'Industry Experience',
     },
     {
@@ -32,7 +32,7 @@ const WhyChoose = () => {
   ];
 
   return (
-    <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 px-6 py-14 sm:px-8 md:px-12 select-none justify-between gap-4 sm:gap-6 md:gap-7 mt-12 sm:mt-16 md:mt-24">
+    <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 px-6 py-4 sm:px-8 md:px-12 select-none justify-between gap-4 sm:gap-6 md:gap-7 mt-4 sm:mt-16 md:mt-12">
       {stats.map((stat) => (
         <div
           key={stat.id}

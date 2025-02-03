@@ -184,7 +184,7 @@ const BookingForm = () => {
     <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white shadow-xl rounded-lg space-y-4">
       <div className="mb-8">
         <h4 className="text-center text-xl font-semibold bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg text-white p-3 shadow-md">
-          Book Your Free Trial & Start Profit Booking
+          Book Your Free Trial &  <br /> Start Trading With Us
         </h4>
       </div>
 

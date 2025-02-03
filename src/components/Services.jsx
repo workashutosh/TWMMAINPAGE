@@ -1,4 +1,4 @@
-import  { useState } from 'react';
+import { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import img1 from '../images/s1.webp';
 import img2 from '../images/s2.webp';
@@ -9,20 +9,7 @@ import img6 from '../images/s4.webp';
 
 const Services = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
-  
-  const next = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === features.length - 3 ? 0 : prevIndex + 1
-    );
-  };
-
-  const prev = () => {
-    setCurrentIndex((prevIndex) => 
-      prevIndex === 0 ? features.length - 3 : prevIndex - 1
-    );
-  };
-
-
+  const ITEMS_PER_PAGE = 3; // Number of items shown at once
 
   const features = [
     {
@@ -86,79 +73,93 @@ const Services = () => {
       icon: img4
     }
   ];
-  
-  
+
+  const totalPages = Math.ceil(features.length / ITEMS_PER_PAGE);
+
+  const next = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === features.length - ITEMS_PER_PAGE ? 0 : prevIndex + 1
+    );
+  };
+
+  const prev = () => {
+    setCurrentIndex((prevIndex) => 
+      prevIndex === 0 ? features.length - ITEMS_PER_PAGE : prevIndex - 1
+    );
+  };
+
+  const getCurrentPage = () => Math.floor(currentIndex / ITEMS_PER_PAGE);
 
   return (
     <section className="lg:py-12 py-12 w-full">
-    <div className=" px-4 ">
-      <div className="border border-blue-500 bg-[#F9FBFF]  md:rounded-[20px] rounded-[12px] md:pt-8 md:pb-10 p-5">
-        <div className="md:px-10 px-2 items-center mb-5 flex justify-center flex-col text-center ">
-          <h1 className="text-blue-600 font-extrabold text-center  xl:text-[3.438rem] xl:leading-[3.781rem] md:text-[2.5rem] text-[30px] md:leading-[2.5rem] leading-[33px] md:max-w-[700px] max-w-[232px]">
-            SERVICES WE PROVIDE
-          </h1>
-          <p className="md:mt-3 mt-1 text-[14px] md:text-[20px] leading-[20.8px] md:leading-[28px] text-H2Color md:max-w-[427px] max-w-[220px]">
-            Trading and Investment Insights Based on Market Conditions Suitable For Everyone.
-          </p>
-        </div>
+      <div className="px-4">
+        <div className="border border-blue-500 bg-[#F9FBFF] md:rounded-[20px] rounded-[12px] md:pt-8 md:pb-10 p-5">
+          <div className="md:px-10 px-2 items-center mb-5 flex justify-center flex-col text-center">
+            <h1 className="text-blue-600 font-extrabold text-center xl:text-[3.438rem] xl:leading-[3.781rem] md:text-[2.5rem] text-[30px] md:leading-[2.5rem] leading-[33px] md:max-w-[700px] max-w-[232px]">
+              SERVICES WE PROVIDE
+            </h1>
+            <p className="md:mt-3 mt-1 text-[14px] md:text-[20px] leading-[20.8px] md:leading-[28px] text-H2Color md:max-w-[427px] max-w-[220px]">
+              Trading and Investment Insights Based on Market Conditions Suitable For Everyone.
+            </p>
+          </div>
 
-        <div className="relative mx-auto px-4 md:px-0 h-[500px]">
-      <div className="h-[400px] relative perspective-1000 overflow-hidden">
-        <div className="relative h-full w-full flex transition-transform ease-in-out duration-500" style={{ transform: `translateX(-${currentIndex * 100}%)` }}>
-          {features.map((feature, index) => (
-            <div
-              key={feature.id}
-              className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4" // Adjust width for responsiveness
-            >
+          <div className="relative mx-auto px-4 md:px-0 h-[500px]">
+            <div className="h-[400px] relative perspective-1000 overflow-hidden">
               <div 
-                className="cursor-pointer bg-white rounded-lg shadow-lg p-6 h-full"
-                onClick={() => setCurrentIndex(index)}
+                className="relative h-full w-full flex transition-transform ease-in-out duration-500" 
+                style={{ transform: `translateX(-${currentIndex * (100 / ITEMS_PER_PAGE)}%)` }}
               >
-                <div className="mb-4">
-                  <img
-                    src={feature.icon}
-                    alt={feature.title}
-                    className="w-12 h-12 mb-2 mx-auto"
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-2 text-center">{feature.title}</h3>
-                <p className="text-gray-600 text-center">{feature.description}</p>
+                {features.map((feature, index) => (
+                  <div
+                    key={feature.id}
+                    className="flex-shrink-0 w-full md:w-1/2 lg:w-1/3 px-4"
+                  >
+                    <div className="cursor-pointer bg-white rounded-lg shadow-lg p-6 h-full">
+                      <div className="mb-4">
+                        <img
+                          src={feature.icon}
+                          alt={feature.title}
+                          className="w-12 h-12 mb-2 mx-auto"
+                        />
+                      </div>
+                      <h3 className="text-xl font-semibold mb-2 text-center">{feature.title}</h3>
+                      <p className="text-gray-600 text-center">{feature.description}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+
+            <button
+              onClick={prev}
+              className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100"
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </button>
+
+            <button
+              onClick={next}
+              className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100"
+            >
+              <ChevronRight className="h-6 w-6" />
+            </button>
+
+            <div className="flex justify-center mt-4 gap-2">
+              {[...Array(totalPages)].map((_, i) => (
+                <button
+                  key={i}
+                  className={`h-2 w-2 rounded-full ${
+                    i === getCurrentPage() ? 'bg-blue-600' : 'bg-gray-300'
+                  }`}
+                  onClick={() => setCurrentIndex(i * ITEMS_PER_PAGE)}
+                />
+              ))}
+            </div>
+          </div>
         </div>
       </div>
+    </section>
+  );
+};
 
-      <button
-        onClick={prev}
-        className="absolute left-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100"
-      >
-        <ChevronLeft className="h-6 w-6" />
-      </button>
-
-      <button
-        onClick={next}
-        className="absolute right-4 top-1/2 -translate-y-1/2 z-10 p-2 rounded-full bg-white shadow-lg hover:bg-gray-100"
-      >
-        <ChevronRight className="h-6 w-6" />
-      </button>
-
-      <div className="flex justify-center mt-4 gap-2">
-        {features.map((_, i) => (
-          <button
-            key={i}
-            className={`h-2 w-2 rounded-full ${
-              i === currentIndex ? 'bg-blue-600' : 'bg-gray-300'
-            }`}
-            onClick={() => setCurrentIndex(i)}
-          />
-        ))}
-      </div>
-    </div>
-      </div>
-    </div>
-     </section>
-  )
-}
-
-export default Services
+export default Services;
