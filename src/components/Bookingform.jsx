@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import Select from 'react-select';
 
+
 const indianStates = [
   "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand",
   "Karnataka", "Kerala", "Madhya Pradesh", "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab",
@@ -64,6 +65,10 @@ const BookingForm = () => {
     ipAddress: '', // Store IP Address
     utmSource: ''  // Store UTM Source
   });
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const [formSubmitted, setFormSubmitted] = useState(false);
 
   const [errors, setErrors] = useState({
     fullNameError: '',
@@ -146,6 +151,7 @@ const BookingForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const validationErrors = {};
+    setIsSubmitting(true);
   
     if (!formData.fullName) validationErrors.fullNameError = 'Full name is required';
     if (!formData.phone || !/^\d{10}$/.test(formData.phone)) validationErrors.phoneError = 'Phone number is required and should be valid';
@@ -168,7 +174,10 @@ const BookingForm = () => {
       })
         .then(response => {
           if (response.status === 200) {
-            window.location.replace('https://twmresearchalert.com/landingpage/thank-you/');
+            console.log(response)
+            // window.location.replace('https://twmresearchalert.com/landingpage/thank-you/');
+            setFormSubmitted(true);
+            setIsSubmitting(false); 
           }
           return response.json();
         })
@@ -177,199 +186,214 @@ const BookingForm = () => {
         });
     }
 };
-  
-  
 
   return (
-    <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white shadow-xl rounded-lg space-y-4">
-      <div className="mb-8">
-        <h4 className="text-center text-xl font-semibold bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg text-white p-3 shadow-md">
-          Book Your Free Trial &  <br /> Start Trading With Us
-        </h4>
-      </div>
+    <div>
+      {!formSubmitted && ( 
+        <form onSubmit={handleSubmit} className="max-w-md mx-auto p-6 bg-white shadow-xl rounded-lg space-y-4">
+          <div className="mb-8">
+            <h4 className="text-center text-xl font-semibold bg-gradient-to-r from-blue-600 to-blue-800 rounded-lg text-white p-3 shadow-md">
+              Book Your Free Trial &  <br /> Start Trading With Us
+            </h4>
+          </div>
 
-      <div className="space-y-4">
-        <div className="relative">
-          <input
-            type="text"
-            name="fullName"
-            placeholder="Full Name"
-            required
-            value={formData.fullName}
-            onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
-          />
-          {errors.fullNameError && (
-            <div className="text-red-500 text-xs mt-1 ml-1">{errors.fullNameError}</div>
-          )}
+          <div className="space-y-4">
+            <div className="relative">
+              <input
+                type="text"
+                name="fullName"
+                placeholder="Full Name"
+                required
+                value={formData.fullName}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
+              />
+              {errors.fullNameError && (
+                <div className="text-red-500 text-xs mt-1 ml-1">{errors.fullNameError}</div>
+              )}
+            </div>
+
+            <div className="relative">
+              <input
+                type="number"
+                name="phone"
+                placeholder="Phone"
+                required
+                value={formData.phone}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
+              />
+              {errors.phoneError && (
+                <div className="text-red-500 text-xs mt-1 ml-1">{errors.phoneError}</div>
+              )}
+            </div>
+
+            <div className="relative">
+              <input
+                type="email"
+                name="email"
+                required
+                placeholder="Email Address"
+                value={formData.email}
+                onChange={handleChange}
+                className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
+              />
+            </div>
+
+            <div className="space-y-4">
+              <Select
+                name="state"
+                value={formData.state ? { value: formData.state, label: formData.state } : ''}
+                onChange={(selectedOption) => handleSelectChange('state', selectedOption)}
+                options={indianStates.map((state) => ({ value: state, label: state }))}
+                placeholder="Select State"
+                className="w-full"
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    minHeight: '42px',
+                    background: '#F9FAFB',
+                    borderColor: '#E5E7EB',
+                    '&:hover': {
+                      borderColor: '#3B82F6'
+                    }
+                  }),
+                  placeholder: (base) => ({
+                    ...base,
+                    color: '#9CA3AF'
+                  })
+                }}
+              />
+              {errors.stateError && (
+                <div className="text-red-500 text-xs mt-1 ml-1">{errors.stateError}</div>
+              )}
+            </div>
+
+            <div className="space-y-4">
+              <Select
+                name="segment"
+                value={formData.segment ? { value: formData.segment, label: formData.segment } : ''}
+                onChange={(selectedOption) => handleSelectChange('segment', selectedOption)}
+                options={segments}
+                placeholder="Select Segment"
+                className="w-full"
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    minHeight: '42px',
+                    background: '#F9FAFB',
+                    borderColor: '#E5E7EB',
+                    '&:hover': {
+                      borderColor: '#3B82F6'
+                    }
+                  }),
+                  placeholder: (base) => ({
+                    ...base,
+                    color: '#9CA3AF'
+                  })
+                }}
+              />
+              {errors.segmentError && (
+                <div className="text-red-500 text-xs mt-1 ml-1">{errors.segmentError}</div>
+              )}
+            </div>
+
+            <div className="space-y-4">
+              <Select
+                name="investment"
+                value={formData.investment ? { value: formData.investment, label: formData.investment } : ''}
+                onChange={(selectedOption) => handleSelectChange('investment', selectedOption)}
+                options={investments}
+                placeholder="Select Investment Amount"
+                className="w-full"
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    minHeight: '42px',
+                    background: '#F9FAFB',
+                    borderColor: '#E5E7EB',
+                    '&:hover': {
+                      borderColor: '#3B82F6'
+                    }
+                  }),
+                  placeholder: (base) => ({
+                    ...base,
+                    color: '#9CA3AF'
+                  })
+                }}
+              />
+              {errors.investmentError && (
+                <div className="text-red-500 text-xs mt-1 ml-1">{errors.investmentError}</div>
+              )}
+            </div>
+
+            <div className="space-y-4">
+              <Select
+                name="language"
+                value={formData.language ? { value: formData.language, label: formData.language } : ''}
+                onChange={(selectedOption) => handleSelectChange('language', selectedOption)}
+                options={languages}
+                placeholder="Select Language"
+                className="w-full"
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    minHeight: '42px',
+                    background: '#F9FAFB',
+                    borderColor: '#E5E7EB',
+                    '&:hover': {
+                      borderColor: '#3B82F6'
+                    }
+                  }),
+                  placeholder: (base) => ({
+                    ...base,
+                    color: '#9CA3AF'
+                  })
+                }}
+              />
+              {errors.languageError && (
+                <div className="text-red-500 text-xs mt-1 ml-1">{errors.languageError}</div>
+              )}
+            </div>
+
+            <div className="flex items-center bg-gray-50 p-3 rounded-lg">
+              <input
+                type="checkbox"
+                name="consent"
+                checked={formData.consent}
+                onChange={handleChange}
+                className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
+              />
+              <label className="ml-2 text-sm text-gray-600">
+                I agree to the terms and conditions
+              </label>
+            </div>
+
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-2.5 rounded-lg hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 font-medium shadow-md"
+            >
+              {isSubmitting ? 'Submitting...' : 'Submit'}
+            </button>
+          </div>
+        </form>
+      )}
+
+      {formSubmitted && ( 
+        <div className="max-w-md mx-auto min-h-screen p-10  text-center">
+
+          <div className=' bg-green-100 p-4 shadow-lg rounded-lg text-green-800'>
+
+          
+          <h2 className="text-2xl font-semibold mb-4">Thank You!</h2>
+          <p>You have successfully registered for the free trial 🎉 . <br /> We will get back to you soon.</p>
+          </div>
         </div>
-
-        <div className="relative">
-          <input
-            type="number"
-            name="phone"
-            placeholder="Phone"
-            required
-            value={formData.phone}
-            onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
-          />
-          {errors.phoneError && (
-            <div className="text-red-500 text-xs mt-1 ml-1">{errors.phoneError}</div>
-          )}
-        </div>
-
-        <div className="relative">
-          <input
-            type="email"
-            name="email"
-            required
-            placeholder="Email Address"
-            value={formData.email}
-            onChange={handleChange}
-            className="w-full px-4 py-2.5 border border-gray-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 bg-gray-50 placeholder-gray-400"
-          />
-        </div>
-
-        <div className="space-y-4">
-          <Select
-            name="state"
-            value={formData.state ? { value: formData.state, label: formData.state } : ''}
-            onChange={(selectedOption) => handleSelectChange('state', selectedOption)}
-            options={indianStates.map((state) => ({ value: state, label: state }))}
-            placeholder="Select State"
-            className="w-full"
-            styles={{
-              control: (base) => ({
-                ...base,
-                minHeight: '42px',
-                background: '#F9FAFB',
-                borderColor: '#E5E7EB',
-                '&:hover': {
-                  borderColor: '#3B82F6'
-                }
-              }),
-              placeholder: (base) => ({
-                ...base,
-                color: '#9CA3AF'
-              })
-            }}
-          />
-          {errors.stateError && (
-            <div className="text-red-500 text-xs mt-1 ml-1">{errors.stateError}</div>
-          )}
-        </div>
-
-        <div className="space-y-4">
-          <Select
-            name="segment"
-            value={formData.segment ? { value: formData.segment, label: formData.segment } : ''}
-            onChange={(selectedOption) => handleSelectChange('segment', selectedOption)}
-            options={segments}
-            placeholder="Select Segment"
-            className="w-full"
-            styles={{
-              control: (base) => ({
-                ...base,
-                minHeight: '42px',
-                background: '#F9FAFB',
-                borderColor: '#E5E7EB',
-                '&:hover': {
-                  borderColor: '#3B82F6'
-                }
-              }),
-              placeholder: (base) => ({
-                ...base,
-                color: '#9CA3AF'
-              })
-            }}
-          />
-          {errors.segmentError && (
-            <div className="text-red-500 text-xs mt-1 ml-1">{errors.segmentError}</div>
-          )}
-        </div>
-
-        <div className="space-y-4">
-          <Select
-            name="investment"
-            value={formData.investment ? { value: formData.investment, label: formData.investment } : ''}
-            onChange={(selectedOption) => handleSelectChange('investment', selectedOption)}
-            options={investments}
-            placeholder="Select Investment Amount"
-            className="w-full"
-            styles={{
-              control: (base) => ({
-                ...base,
-                minHeight: '42px',
-                background: '#F9FAFB',
-                borderColor: '#E5E7EB',
-                '&:hover': {
-                  borderColor: '#3B82F6'
-                }
-              }),
-              placeholder: (base) => ({
-                ...base,
-                color: '#9CA3AF'
-              })
-            }}
-          />
-          {errors.investmentError && (
-            <div className="text-red-500 text-xs mt-1 ml-1">{errors.investmentError}</div>
-          )}
-        </div>
-
-        <div className="space-y-4">
-          <Select
-            name="language"
-            value={formData.language ? { value: formData.language, label: formData.language } : ''}
-            onChange={(selectedOption) => handleSelectChange('language', selectedOption)}
-            options={languages}
-            placeholder="Select Language"
-            className="w-full"
-            styles={{
-              control: (base) => ({
-                ...base,
-                minHeight: '42px',
-                background: '#F9FAFB',
-                borderColor: '#E5E7EB',
-                '&:hover': {
-                  borderColor: '#3B82F6'
-                }
-              }),
-              placeholder: (base) => ({
-                ...base,
-                color: '#9CA3AF'
-              })
-            }}
-          />
-          {errors.languageError && (
-            <div className="text-red-500 text-xs mt-1 ml-1">{errors.languageError}</div>
-          )}
-        </div>
-
-        <div className="flex items-center bg-gray-50 p-3 rounded-lg">
-          <input
-            type="checkbox"
-            name="consent"
-            checked={formData.consent}
-            onChange={handleChange}
-            className="w-4 h-4 text-blue-600 border-gray-300 rounded focus:ring-blue-500"
-          />
-          <label className="ml-2 text-sm text-gray-600">
-            I agree to the terms and conditions
-          </label>
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-gradient-to-r from-blue-600 to-blue-700 text-white py-2.5 rounded-lg hover:from-blue-700 hover:to-blue-800 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-all duration-200 font-medium shadow-md"
-        >
-          Submit
-        </button>
-      </div>
-    </form>
-
+      )}
+    </div>
   );
 };
 
 export default BookingForm;
+

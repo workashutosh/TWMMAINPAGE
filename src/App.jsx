@@ -12,6 +12,7 @@ import RefundPolicy from './components/RefundPolicy';
 import Packages from './components/Packages';
 import CustomerJourneyTimeline from './components/Timeline'; 
 import ContactUs from './components/ContactUs';
+import HeroSection from './components/Hero';
 
 
 const App = () => {
@@ -31,7 +32,7 @@ const App = () => {
               path="/" 
               element={
                 <>
-                  <Header />
+                  <HeroSection />
                   <AboutUs />
                   <CustomerJourneyTimeline />
                   <WhyChoose />
@@ -71,6 +72,17 @@ const App = () => {
               element={
                 <>
                   <Packages />
+                  <Footer />
+                </>
+              } 
+            />
+
+            {/* Contact Us */}
+            <Route 
+              path="/contact" 
+              element={
+                <>
+                  <ContactUs />
                   <Footer />
                 </>
               } 

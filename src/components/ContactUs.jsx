@@ -39,7 +39,7 @@ const ContactUs = () => {
   return (
     <div className="bg-gray-50 min-h-screen">
       {/* Hero Section with Form */}
-      <div className="bg-blue-600 py-16">
+      <div className="bg-blue-600 py-8">
         <div className="container mx-auto px-4">
           <h1 className="text-4xl md:text-5xl font-bold text-white text-center mb-4">
             Start Your Free Trial
